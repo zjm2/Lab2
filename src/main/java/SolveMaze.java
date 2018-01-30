@@ -35,8 +35,29 @@ public class SolveMaze {
          */
         for (int step = 0; step < 1000; step++) {
             // Implement your maze solving algorithm here
-        }
+            if (maze.isFinished()) {
+                break;
+            }
+            if (!maze.isFinished()) {
+                while (maze.canMove()) {
+                    maze.move();
+                }
+                if (Math.random() < .5) {
+                    maze.turnRight();
+                    while (maze.canMove()) {
+                        maze.move();
+                    }
+                }
+                if (Math.random() >= .5) {
+                    maze.turnLeft();
+                    while (maze.canMove()) {
+                        maze.move();
+                    }
+                }
+            }
+            System.out.println(step);
 
+        }
         if (maze.isFinished()) {
             System.out.println("You solved the maze!");
         } else {
@@ -44,3 +65,9 @@ public class SolveMaze {
         }
     }
 }
+/* 1. It takes about 50-100 steps to complete the maze
+   2. N + M - 1
+   3. Alot worse in general.
+   4. Try and  move diagonally.
+ */
+
